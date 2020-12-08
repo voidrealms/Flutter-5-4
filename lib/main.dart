@@ -24,6 +24,8 @@ class _State extends State<MyApp> {
     switch(
     await showDialog(
         context: context,
+       /*
+       Older Flutter Versions
         child: new SimpleDialog(
           title: new Text('Do you like Flutter?'),
           children: <Widget>[
@@ -32,6 +34,17 @@ class _State extends State<MyApp> {
             new SimpleDialogOption(child: new Text('Maybe :|'),onPressed: (){Navigator.pop(context, Answers.MAYBE);},),
           ],
         )
+        */
+       builder: (BuildContext context) {
+         return new SimpleDialog(
+           title: new Text('Do you like Flutter?'),
+           children: <Widget>[
+             new SimpleDialogOption(child: new Text('Yes!!!'),onPressed: (){Navigator.pop(context, Answers.YES);},),
+             new SimpleDialogOption(child: new Text('NO :('),onPressed: (){Navigator.pop(context, Answers.NO);},),
+             new SimpleDialogOption(child: new Text('Maybe :|'),onPressed: (){Navigator.pop(context, Answers.MAYBE);},),
+           ],
+         );
+          }
     )
     ) {
       case Answers.YES:
@@ -54,15 +67,15 @@ class _State extends State<MyApp> {
         title: new Text('Name here'),
       ),
       body: new Container(
-        padding: new EdgeInsets.all(32.0),
-        child: new Center(
-          child: new Column(
-            children: <Widget>[
-              new Text(_value),
-              new RaisedButton(onPressed: _askUser, child: new Text('Click me'),)
-            ],
-          ),
-        )
+          padding: new EdgeInsets.all(32.0),
+          child: new Center(
+            child: new Column(
+              children: <Widget>[
+                new Text(_value),
+                new RaisedButton(onPressed: _askUser, child: new Text('Click me'),)
+              ],
+            ),
+          )
       ),
     );
   }
